@@ -1,0 +1,64 @@
+### Use resusable workflow to deploy to Pantheon
+
+name: Deploy to Pantheon
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "Message for push to Pantheon\nDefaults to last commit message"
+        type: string
+        required: false
+        default: ''
+  push:
+    branches:
+      - pantheon
+
+jobs:
+  deploy-auth-sites:
+    uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
+    with:
+      site:                   stanford-auth-sites                    # the site on Pantheon we're deploying to, e.g. stanford-news
+      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
+    secrets:
+      DEV_DEPLOY_REPO:        ${{ secrets.AUTH_SITES_DEPLOY_REPO }}  # repo secret: ssh uri of Pantheon's repo this code will be deployed to
+      SSH_DEPLOY_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}  # organization secret: SSH Private Key allowed to deploy to DEV_DEPLOY_REPO
+      PANTHEON_MACHINE_TOKEN: ${{ secrets.PANTHEON_MACHINE_TOKEN }}  # organization secret: Pantheon-generated machine token to allow terminus to set the dev environment to git mode
+      SLACK_DEPLOY_WEBHOOK:   ${{ secrets.SLACK_DEPLOY_WEBHOOK }}    # organization secret: url for posting status updates to desired Slack channel
+
+  deploy-health-alerts:
+    uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
+    with:
+      site:                   emergency-ss                           # the site on Pantheon we're deploying to, e.g. stanford-news
+      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
+    secrets:
+      DEV_DEPLOY_REPO:        ${{ secrets.HEALTH_ALERTS_DEPLOY_REPO }} # repo secret: ssh uri of Pantheon's repo this code will be deployed to
+      SSH_DEPLOY_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}  # organization secret: SSH Private Key allowed to deploy to DEV_DEPLOY_REPO
+      PANTHEON_MACHINE_TOKEN: ${{ secrets.PANTHEON_MACHINE_TOKEN }}  # organization secret: Pantheon-generated machine token to allow terminus to set the dev environment to git mode
+      SLACK_DEPLOY_WEBHOOK:   ${{ secrets.SLACK_DEPLOY_WEBHOOK }}    # organization secret: url for posting status updates to desired Slack channel
+
+  deploy-homesite:
+    uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
+    with:
+      site:                   emergency-ss                           # the site on Pantheon we're deploying to, e.g. stanford-news
+      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
+    secrets:
+      DEV_DEPLOY_REPO:        ${{ secrets.HOMESITE_DEPLOY_REPO }}    # repo secret: ssh uri of Pantheon's repo this code will be deployed to
+      SSH_DEPLOY_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}  # organization secret: SSH Private Key allowed to deploy to DEV_DEPLOY_REPO
+      PANTHEON_MACHINE_TOKEN: ${{ secrets.PANTHEON_MACHINE_TOKEN }}  # organization secret: Pantheon-generated machine token to allow terminus to set the dev environment to git mode
+      SLACK_DEPLOY_WEBHOOK:   ${{ secrets.SLACK_DEPLOY_WEBHOOK }}    # organization secret: url for posting status updates to desired Slack channel
+
+  deploy-ucomm-sites:
+    uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
+    with:
+      site:                   stanford-ucomm                         # the site on Pantheon we're deploying to, e.g. stanford-news
+      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
+    secrets:
+      DEV_DEPLOY_REPO:        ${{ secrets.UCOMM_SITES_DEPLOY_REPO }} # repo secret: ssh uri of Pantheon's repo this code will be deployed to
+      SSH_DEPLOY_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_PRIVATE_KEY }}  # organization secret: SSH Private Key allowed to deploy to DEV_DEPLOY_REPO
+      PANTHEON_MACHINE_TOKEN: ${{ secrets.PANTHEON_MACHINE_TOKEN }}  # organization secret: Pantheon-generated machine token to allow terminus to set the dev environment to git mode
+      SLACK_DEPLOY_WEBHOOK:   ${{ secrets.SLACK_DEPLOY_WEBHOOK }}    # organization secret: url for posting status updates to desired Slack channel
