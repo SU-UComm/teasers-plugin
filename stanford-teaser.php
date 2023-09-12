@@ -74,6 +74,7 @@ class SU_Teaser {
 			'menu_icon'           => 'dashicons-external',
 			'show_in_admin_bar'   => TRUE,
 			'show_in_nav_menus'   => FALSE,
+			'show_in_rest'        => TRUE,
 			'can_export'          => TRUE,
 			'has_archive'         => FALSE,
 			'exclude_from_search' => FALSE,
