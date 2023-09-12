@@ -19,7 +19,7 @@ jobs:
     uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
     with:
       site:                   stanford-auth-sites                    # the site on Pantheon we're deploying to, e.g. stanford-news
-      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      component_folder:       wp-content/plugins/stanford-teaser     # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
       message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
     secrets:
       DEV_DEPLOY_REPO:        ${{ secrets.AUTH_SITES_DEPLOY_REPO }}  # repo secret: ssh uri of Pantheon's repo this code will be deployed to
@@ -31,7 +31,7 @@ jobs:
     uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
     with:
       site:                   emergency-ss                           # the site on Pantheon we're deploying to, e.g. stanford-news
-      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      component_folder:       wp-content/plugins/stanford-teaser     # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
       message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
     secrets:
       DEV_DEPLOY_REPO:        ${{ secrets.HEALTH_ALERTS_DEPLOY_REPO }} # repo secret: ssh uri of Pantheon's repo this code will be deployed to
@@ -43,7 +43,7 @@ jobs:
     uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
     with:
       site:                   emergency-ss                           # the site on Pantheon we're deploying to, e.g. stanford-news
-      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      component_folder:       wp-content/plugins/stanford-teaser     # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
       message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
     secrets:
       DEV_DEPLOY_REPO:        ${{ secrets.HOMESITE_DEPLOY_REPO }}    # repo secret: ssh uri of Pantheon's repo this code will be deployed to
@@ -55,7 +55,7 @@ jobs:
     uses: SU-UComm/github-workflows/.github/workflows/deploy-to-pantheon.yml@master
     with:
       site:                   stanford-ucomm                         # the site on Pantheon we're deploying to, e.g. stanford-news
-      component_folder:       wp-content/themes/redwood              # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
+      component_folder:       wp-content/plugins/stanford-teaser     # where in Pantheon's repo this code should go, e.g. wp-content/themes/news
       message:                ${{ github.event.inputs.message }}     # optional message when manually running workflow
     secrets:
       DEV_DEPLOY_REPO:        ${{ secrets.UCOMM_SITES_DEPLOY_REPO }} # repo secret: ssh uri of Pantheon's repo this code will be deployed to
